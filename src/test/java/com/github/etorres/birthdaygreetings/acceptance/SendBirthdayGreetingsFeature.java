@@ -34,7 +34,7 @@ public class SendBirthdayGreetingsFeature {
         EmailSender emailSender = new EmailSenderCollaborator();
         EmailSender emailSenderSpy = spy(emailSender);
 
-        BirthdayGreeter birthdayGreeter = new BirthdayGreeter(clock, employeeRepository, emailSender);
+        BirthdayGreeter birthdayGreeter = new BirthdayGreeter(clock, employeeRepository, emailSenderSpy);
 
         birthdayGreeter.sendGreetings();
 
