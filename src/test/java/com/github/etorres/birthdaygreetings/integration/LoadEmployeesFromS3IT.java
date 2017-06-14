@@ -44,7 +44,7 @@ public class LoadEmployeesFromS3IT {
     private class EmailSenderCollaborator extends EmailSender {
 
         @Override
-        public void sendMessage(EmailAddress emailAddress, Message message) {
+        public void sendMessage(EmailAddress destination, Message message) {
             // do nothing
         }
 
