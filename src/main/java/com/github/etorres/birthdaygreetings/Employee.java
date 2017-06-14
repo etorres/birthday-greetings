@@ -17,6 +17,14 @@ public class Employee {
         this.email = email;
     }
 
+    public String email() {
+        return email;
+    }
+
+    public String firstName() {
+        return firstName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

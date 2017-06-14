@@ -23,7 +23,7 @@ public class SendBirthdayGreetingsFeature {
     @Test
     public void
     sends_a_greetings_email_to_all_employees_whose_birthday_is_today() {
-        given(clock.now()).willReturn(LocalDate.of(2017, Month.JUNE, 14));
+        given(clock.today()).willReturn(LocalDate.of(2017, Month.JUNE, 14));
 
         ClassLoader classLoader = getClass().getClassLoader();
         File employeesFile = new File(classLoader.getResource("file/employees.txt").getFile());

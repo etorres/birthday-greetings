@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Clock {
 
-    public LocalDate now() {
+    public LocalDate today() {
         return LocalDate.now();
     }
 

@@ -1,5 +1,7 @@
 package com.github.etorres.birthdaygreetings;
 
+import java.util.List;
+
 public class BirthdayGreeter {
 
     private final Clock clock;
@@ -13,7 +15,13 @@ public class BirthdayGreeter {
     }
 
     public void sendGreetings() {
-        throw new IllegalStateException("Not implemented");
+        List<Employee> employees = employeeRepository.findEmployeesBornOn(clock.today());
+        employees.forEach(employee -> emailSender.sendMessage(new EmailAddress(employee.email()),
+                greetingsMessage(employee)));
+    }
+
+    private Message greetingsMessage(Employee employee) {
+        return new Message("Happy birthday!", String.format("Happy birthday, dear %s!", employee.firstName()));
     }
 
 }
