@@ -1,7 +1,26 @@
 package com.github.etorres.birthdaygreetings;
 
-/**
- * Created by etorres on 14/06/17.
- */
-public class Address {
+import java.util.Objects;
+
+public class EmailAddress {
+
+    private final String email;
+
+    public EmailAddress(String email) {
+        this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EmailAddress that = (EmailAddress) o;
+        return Objects.equals(email, that.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
+    }
+
 }

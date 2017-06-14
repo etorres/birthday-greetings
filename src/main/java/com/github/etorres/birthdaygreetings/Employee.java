@@ -1,7 +1,36 @@
 package com.github.etorres.birthdaygreetings;
 
-/**
- * Created by etorres on 14/06/17.
- */
+import java.time.LocalDate;
+import java.util.Objects;
+
 public class Employee {
+
+    private final String lastName;
+    private final String firstName;
+    private final LocalDate dateOfBirth;
+    private final String email;
+
+    public Employee(String lastName, String firstName, LocalDate dateOfBirth, String email) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.dateOfBirth = dateOfBirth;
+        this.email = email;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return Objects.equals(lastName, employee.lastName) &&
+                Objects.equals(firstName, employee.firstName) &&
+                Objects.equals(dateOfBirth, employee.dateOfBirth) &&
+                Objects.equals(email, employee.email);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lastName, firstName, dateOfBirth, email);
+    }
+
 }

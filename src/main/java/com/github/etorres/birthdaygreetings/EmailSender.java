@@ -1,7 +1,9 @@
 package com.github.etorres.birthdaygreetings;
 
-/**
- * Created by etorres on 14/06/17.
- */
 public class EmailSender {
+
+    public void sendMessage(EmailAddress emailAddress, Message message) {
+        throw new IllegalStateException("Not implemented");
+    }
+
 }

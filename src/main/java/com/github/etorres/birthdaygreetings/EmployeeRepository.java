@@ -1,7 +1,10 @@
 package com.github.etorres.birthdaygreetings;
 
-/**
- * Created by etorres on 14/06/17.
- */
+import java.time.LocalDate;
+import java.util.List;
+
 public interface EmployeeRepository {
+
+    List<Employee> findEmployeesBornOn(LocalDate date);
+
 }

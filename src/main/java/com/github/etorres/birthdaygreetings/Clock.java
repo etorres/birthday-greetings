@@ -1,7 +1,11 @@
 package com.github.etorres.birthdaygreetings;
 
-/**
- * Created by etorres on 14/06/17.
- */
+import java.time.LocalDate;
+
 public class Clock {
+
+    public LocalDate now() {
+        return LocalDate.now();
+    }
+
 }
