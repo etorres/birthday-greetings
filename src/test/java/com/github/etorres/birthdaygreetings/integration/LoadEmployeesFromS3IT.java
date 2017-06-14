@@ -26,7 +26,7 @@ public class LoadEmployeesFromS3IT {
 
         EmployeesReader employeesReader = new EmployeesReader();
 
-        EmployeeRepository employeeRepository = new S3EmployeeRepository(employeesReader);
+        EmployeeRepository employeeRepository = new S3EmployeeRepository("ertorser-b1", "employees.txt", employeesReader);
 
         EmailSender emailSender = new EmailSenderCollaborator();
         EmailSender emailSenderSpy = spy(emailSender);

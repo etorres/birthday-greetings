@@ -14,9 +14,13 @@ import java.util.List;
 
 public class S3EmployeeRepository implements EmployeeRepository {
 
+    private final String bucketName;
+    private final String objectKey;
     private final EmployeesReader employeesReader;
 
-    public S3EmployeeRepository(EmployeesReader employeesReader) {
+    public S3EmployeeRepository(String bucketName, String objectKey, EmployeesReader employeesReader) {
+        this.bucketName = bucketName;
+        this.objectKey = objectKey;
         this.employeesReader = employeesReader;
     }
 
@@ -27,16 +31,13 @@ public class S3EmployeeRepository implements EmployeeRepository {
                 .withRegion(Regions.EU_CENTRAL_1)
                 .build();
 
-        String bucketName = "ertorser-b1";
-        String key = "employees.txt";
-
-        S3Object employeesS3Object = s3.getObject(new GetObjectRequest(bucketName, key));
+        S3Object employeesS3Object = s3.getObject(new GetObjectRequest(bucketName, objectKey));
 
         try (S3ObjectInputStream employeesInputStream = employeesS3Object.getObjectContent()) {
             return employeesReader.findEmployeesBornOn(employeesInputStream, date);
         } catch (IOException e) {
             throw new IllegalStateException(String.format("Failed to read employees records from S3: %s/%s",
-                    bucketName, key), e);
+                    bucketName, objectKey), e);
         }
     }
 
