@@ -7,17 +7,17 @@ import java.util.List;
 public class FileEmployeeRepository implements EmployeeRepository {
 
     private final File employeesFile;
-    private final EmployeesReader employeesReader;
+    private final EmployeeReader employeeReader;
 
-    public FileEmployeeRepository(File employeesFile, EmployeesReader employeesReader) {
+    public FileEmployeeRepository(File employeesFile, EmployeeReader employeeReader) {
         this.employeesFile = employeesFile;
-        this.employeesReader = employeesReader;
+        this.employeeReader = employeeReader;
     }
 
     @Override
     public List<Employee> findEmployeesBornOn(LocalDate date) {
         try (InputStream employeesInputStream = new FileInputStream(employeesFile)) {
-            return employeesReader.findEmployeesBornOn(employeesInputStream, date);
+            return employeeReader.filterEmployeesByDateOfBirth(employeesInputStream, date);
         } catch (IOException e) {
             throw new IllegalStateException("Failed to read employees records from file: " + employeesFile, e);
         }

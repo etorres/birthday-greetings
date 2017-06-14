@@ -16,12 +16,12 @@ public class S3EmployeeRepository implements EmployeeRepository {
 
     private final String bucketName;
     private final String objectKey;
-    private final EmployeesReader employeesReader;
+    private final EmployeeReader employeeReader;
 
-    public S3EmployeeRepository(String bucketName, String objectKey, EmployeesReader employeesReader) {
+    public S3EmployeeRepository(String bucketName, String objectKey, EmployeeReader employeeReader) {
         this.bucketName = bucketName;
         this.objectKey = objectKey;
-        this.employeesReader = employeesReader;
+        this.employeeReader = employeeReader;
     }
 
     @Override
@@ -34,7 +34,7 @@ public class S3EmployeeRepository implements EmployeeRepository {
         S3Object employeesS3Object = s3.getObject(new GetObjectRequest(bucketName, objectKey));
 
         try (S3ObjectInputStream employeesInputStream = employeesS3Object.getObjectContent()) {
-            return employeesReader.findEmployeesBornOn(employeesInputStream, date);
+            return employeeReader.filterEmployeesByDateOfBirth(employeesInputStream, date);
         } catch (IOException e) {
             throw new IllegalStateException(String.format("Failed to read employees records from S3: %s/%s",
                     bucketName, objectKey), e);

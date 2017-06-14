@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class EmployeesReader {
+public class EmployeeReader {
 
     private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 
@@ -19,7 +19,7 @@ public class EmployeesReader {
     public static final int DATE_OF_BIRTH_COLUMN = 2;
     public static final int EMAIL_COLUMN = 3;
 
-    public List<Employee> findEmployeesBornOn(InputStream employeesInputStream, LocalDate date) {
+    public List<Employee> filterEmployeesByDateOfBirth(InputStream employeesInputStream, LocalDate date) {
         List<Employee> employees = newEmployeesEmptyList();
         try (Reader reader = new InputStreamReader(employeesInputStream);
              BufferedReader bufferedReader = new BufferedReader(reader)) {

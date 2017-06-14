@@ -20,9 +20,9 @@ public class FileEmployeeRepositoryShould {
         ClassLoader classLoader = getClass().getClassLoader();
         File employeesFile = new File(classLoader.getResource("file/employees.txt").getFile());
 
-        EmployeesReader employeesReader = new EmployeesReader();
+        EmployeeReader employeeReader = new EmployeeReader();
 
-        EmployeeRepository employeeRepository = new FileEmployeeRepository(employeesFile, employeesReader);
+        EmployeeRepository employeeRepository = new FileEmployeeRepository(employeesFile, employeeReader);
 
         List<Employee> employees = employeeRepository.findEmployeesBornOn(DATE_OF_BIRTH);
 

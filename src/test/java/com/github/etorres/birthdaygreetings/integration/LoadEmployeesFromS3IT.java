@@ -24,9 +24,9 @@ public class LoadEmployeesFromS3IT {
     read_employees_from_S3_file() {
         given(clock.today()).willReturn(LocalDate.of(2017, Month.JUNE, 14));
 
-        EmployeesReader employeesReader = new EmployeesReader();
+        EmployeeReader employeeReader = new EmployeeReader();
 
-        EmployeeRepository employeeRepository = new S3EmployeeRepository("ertorser-b1", "employees.txt", employeesReader);
+        EmployeeRepository employeeRepository = new S3EmployeeRepository("ertorser-b1", "employees.txt", employeeReader);
 
         EmailSender emailSender = new EmailSenderCollaborator();
         EmailSender emailSenderSpy = spy(emailSender);
